@@ -20,6 +20,7 @@ export class WishListItemComponent {
   @Output()
   itemToRemove = new EventEmitter<string>();
 
+
   toggleItem() {
 
     this.fulfilled = !this.fulfilled;
@@ -29,5 +30,11 @@ export class WishListItemComponent {
   removeWish() {
     this.itemToRemove.emit(this.wishText);
   }
+
+ get cssClasses(){
+  // return this.fulfilled ? 'strikeout text-muted' : '';
+  //  return this.fulfilled ? ['strikeout', 'muted'] : [];
+  return {'strikeout text-muted' : this.fulfilled}
+ } 
 
 }
