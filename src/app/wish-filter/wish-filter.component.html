@@ -1,0 +1,9 @@
+<select 
+    name="options" 
+    [(ngModel)]="listFilter" 
+    (ngModelChange)="filterItems()"
+>
+    <option value="0">All</option>
+    <option value="1">Fulfilled</option>
+    <option value="2">Unfulfilled</option>
+</select>
