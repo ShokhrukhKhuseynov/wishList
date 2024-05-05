@@ -1,1 +1,15 @@
+<li>
+    <label>
+        <input 
+            type="checkbox" 
+            name="checkbox"
+            [checked]="fulfilled"
+            (click)="toggleItem()"
+            >
+            {{wishText}}
+    </label>
 
+    <button type="submit" *ngIf="fulfilled"
+    (click)="$event.preventDefault(); removeWish()"
+    >Remove Wish</button>
+</li>

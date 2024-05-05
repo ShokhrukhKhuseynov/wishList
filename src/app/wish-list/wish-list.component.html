@@ -4,22 +4,13 @@
 
 <ng-template #showItems>
 <ul>
-    <li id="liu" *ngFor="let item of wishes; index as i">
-        <label >
-          <input 
-          class="checkbox" 
-          type="checkbox"
-          [(ngModel)]="item.isComplete"
-          (ngModelChange)="notifyParent(item)"
-          [checked]="item.isComplete"
-          [attr.custom-data]="i"
-          (click)="toggleItem(item)">
-          {{item.wishText}}
-        </label>
-  
-          <button type="submit" *ngIf="item.isComplete"
-          (click)="$event.preventDefault(); removeWish(item)"
-          >Remove Wish</button>
-    </li>
+
+  <wish-list-item
+  *ngFor="let wish of wishes"
+  [wishText]="wish.wishText"
+  [(fulfilled)]="wish.isComplete"
+  (itemToRemove)="removeWish($event)"
+  ></wish-list-item>
+
 </ul>
 </ng-template>

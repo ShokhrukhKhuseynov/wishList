@@ -18,21 +18,10 @@ export class WishListComponent {
   wishes: WishItem[] = [];
 
   @Output()
-  itemToToggle = new EventEmitter<WishItem>();
+  wishesChange = new EventEmitter<WishItem[]>;
 
-  @Output()
-  itemToRemove = new EventEmitter<WishItem>();
-
-  toggleItem(item : WishItem) {
-    item.isComplete = !item.isComplete;
+  removeWish(wishText : string) {
+    this.wishes = this.wishes.filter((item) => item.wishText !== wishText);
+    this.wishesChange.emit(this.wishes);
   }
-
-  notifyParent(item: WishItem) {
-    this.itemToToggle.emit(item);
-  }
-
-  removeWish(itemToRemove : WishItem) {
-    this.itemToRemove.emit(itemToRemove);
-  }
-
 }

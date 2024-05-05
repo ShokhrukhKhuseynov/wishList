@@ -8,6 +8,9 @@ import { WishItem } from 'src/shared/modules/wishItem';
 })
 
 export class AppComponent {
+removeItem(wishes: WishItem[]) {
+  this.items = wishes;
+}
   
   items : Array<WishItem> = [
     new WishItem("Hello World"),
@@ -23,18 +26,8 @@ export class AppComponent {
     return this.items.filter(this.filter);
   }
 
-  toggleItem(itemToToggle : WishItem) {
-    this.items = this.items.map((item) : WishItem => {
-
-      if(item.wishText === itemToToggle.wishText)
-        item = itemToToggle;
-      
-      return item;
-    });
-  }
-
-  removeItemFromList(itemToRemove : WishItem) {
-    this.items = this.items.filter((item) => !item.equals(itemToRemove));  
+  printItems(){
+    console.log(this.items);
   }
 
  
