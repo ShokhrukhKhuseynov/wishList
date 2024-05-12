@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { WishItem } from 'src/shared/modules/wishItem';
-import eventService from 'src/shared/services/eventService';
+import { EventService } from 'src/shared/services/eventService';
 
 @Component({
   selector: 'app-root',
@@ -20,12 +20,10 @@ export class AppComponent {
   
   filter : any;
 
-  events = eventService;
-
-  constructor(){
+  constructor(private events: EventService){
     this.events.listen('removeWish', this.removeItem.bind(this))
   }
-  
+
   removeItem(wishToRemove: WishItem) {
     const index = this.items.indexOf(wishToRemove);
     this.items.splice(index, 1);
