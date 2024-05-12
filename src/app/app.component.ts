@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { WishItem } from 'src/shared/modules/wishItem';
+import eventService from 'src/shared/services/eventService';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,6 @@ import { WishItem } from 'src/shared/modules/wishItem';
 })
 
 export class AppComponent {
-removeItem(wishes: WishItem[]) {
-  this.items = wishes;
-}
   
   items : Array<WishItem> = [
     new WishItem("Hello World"),
@@ -22,6 +20,17 @@ removeItem(wishes: WishItem[]) {
   
   filter : any;
 
+  events = eventService;
+
+  constructor(){
+    this.events.listen('removeWish', this.removeItem.bind(this))
+  }
+  
+  removeItem(wishToRemove: WishItem) {
+    const index = this.items.indexOf(wishToRemove);
+    this.items.splice(index, 1);
+  }
+
   get getVisibleItems() : WishItem[]{
     return this.items.filter(this.filter);
   }
@@ -30,5 +39,6 @@ removeItem(wishes: WishItem[]) {
     console.log(this.items);
   }
 
- 
+
+
 }

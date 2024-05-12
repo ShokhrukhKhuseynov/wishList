@@ -16,12 +16,4 @@ export class WishListComponent {
 
   @Input()
   wishes: WishItem[] = [];
-
-  @Output()
-  wishesChange = new EventEmitter<WishItem[]>;
-
-  removeWish(wishText : string) {
-    this.wishes = this.wishes.filter((item) => item.wishText !== wishText);
-    this.wishesChange.emit(this.wishes);
-  }
 }

@@ -6,10 +6,9 @@
 <ul>
 
   <wish-list-item
-  *ngFor="let wish of wishes"
-  [wishText]="wish.wishText"
-  [(fulfilled)]="wish.isComplete"
-  (itemToRemove)="removeWish($event)"
+  *ngFor="let item of wishes"
+  [wish]="item"
+  [(fulfilled)]="item.isComplete"
   ></wish-list-item>
 
 </ul>
