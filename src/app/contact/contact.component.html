@@ -1,0 +1,65 @@
+<form
+    [formGroup]="contactForm"
+    (ngSubmit)="$event.preventDefault(); submitForm()"
+    >
+    <div>
+        <label>Your name</label>
+        <br>
+        <input 
+            type="text"
+            formControlName="senderName">
+    </div>
+
+    <div>
+        <label>Your email address</label>
+        <br>
+        <input 
+            type="text"
+            formControlName="senderEmail">
+
+        <div *ngIf="formValidator.validFormField('senderEmail')">
+            <small 
+                *ngIf="formValidator.fieldRequired('senderEmail')"
+                style="color: red;"
+                >This field is required</small>
+
+            <small 
+            *ngIf="formValidator.fieldWithInvalidEmailDomain('senderEmail')"
+            style="color: red;"
+            >This email domain is not allowed</small>
+
+            <small 
+                *ngIf="formValidator.fieldWithEmailFormat('senderEmail')"
+                style="color: red;"
+                >Please enter your email address.</small>
+        </div>
+    </div>
+
+    <div>
+        <label>Message</label>
+        <br>
+        <input 
+            type="text"
+            formControlName="senderMessage">
+
+        <div *ngIf="formValidator.validFormField('senderMessage')">
+            <small 
+                *ngIf="formValidator.fieldRequired('senderMessage')"
+                style="color: red;"
+                >This field is required</small>
+
+            <small 
+                *ngIf="formValidator.fieldWithMinLength('senderMessage')"
+                style="color: red;"
+                >The message has to be at least 10 length</small>
+        </div>
+    </div>
+
+    <div>
+        <br>
+        <button 
+            type="submit"
+            [disabled]="contactForm.invalid"
+            >Send Message</button>
+    </div>
+</form>
